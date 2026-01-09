@@ -4,6 +4,18 @@
 
 using namespace std;
 
+void print (vector<int>&mainArr, string order) {
+    cout << "\nSorted array (" << order << "): ";
+        for (int x : mainArr) {
+            if (x == mainArr[mainArr.size()-1]) {
+                cout << x;
+                break;
+            }
+            cout << x << ", ";
+        };
+    cout << endl;
+}
+
 void merge(vector<int>& mainArr, vector<int>& left, vector<int>& right, string order) {
     int i = 0, j = 0, k = 0;
 
@@ -31,7 +43,7 @@ void merge(vector<int>& mainArr, vector<int>& left, vector<int>& right, string o
 void MergeSort(vector<int>& mainArr, string order) {
     if (mainArr.size() <= 1) return;
 
-    int mid = mainArr.size() / 2;
+    int mid = mainArr.size()/2;
     vector<int> left(mainArr.begin(), mainArr.begin() + mid);
     vector<int> right(mainArr.begin() + mid, mainArr.end());
 
@@ -47,21 +59,13 @@ int main() {
     vector<int> sampleRun = {12, 8, 9, 3, 11, 5, 4};
 
     vector<int> mainArr;
-    string order = "ascending"; // sorting order 
+    string order = "descending"; // sorting order 
 
     for (int x: sampleRun) {
         mainArr.push_back(x); 
     }
     MergeSort(mainArr, order);
-    cout << "\nSorted array (" << order << "): ";
-    for (int x : mainArr) {
-        if (x == mainArr[mainArr.size()-1]) {
-            cout << x;
-            break;
-        }
-        cout << x << ", ";
-    };
-    cout << endl;
+    print(mainArr,order);
 
     mainArr.clear();
 
@@ -77,15 +81,16 @@ int main() {
 
     MergeSort(mainArr, order);
 
-    cout << "\nSorted array (" << order << "): ";
-    for (int x : mainArr) {
-        if (x == mainArr[mainArr.size()-1]) {
-            cout << x;
-            break;
-        }
-        cout << x << ", ";
-    };
-    cout << endl;
+    print(mainArr,order);
+    // cout << "\nSorted array (" << order << "): ";
+    // for (int x : mainArr) {
+    //     if (x == mainArr[mainArr.size()-1]) {
+    //         cout << x;
+    //         break;
+    //     }
+    //     cout << x << ", ";
+    // };
+    // cout << endl;
 
     return 0;
 }
