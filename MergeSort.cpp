@@ -4,17 +4,42 @@
 
 using namespace std;
 
-void merge()
+void merge(vector<int>& mainArr, vector<int>& left, vector<int>& right, string order) {
+    int i = 0, j = 0, k = 0;
 
-void MergeSort(vector<int> mainArr, string order) {
-    if (mainArr.size<=1) { // basically base casing case
-        return mainArr;
-    } 
-    int mid = mainArr.size()/2;
-    int lefty = mainArr[mid];
-    return merge(mainArr, order);
+    while (i < left.size() && j < right.size()) {
+        if (order == "ascending") {
+            if (left[i] <= right[j]) {
+                mainArr[k++] = left[i++];
+            } else {
+                mainArr[k++] = right[j++];
+            }
+        } else { 
+            if (left[i] >= right[j]) {
+                mainArr[k++] = left[i++];
+            } else {
+                mainArr[k++] = right[j++];
+            }
+        }
+    }
+
+    while (i < left.size()) mainArr[k++] = left[i++];
+    while (j < right.size()) mainArr[k++] = right[j++];
 }
 
+
+void MergeSort(vector<int>& mainArr, string order) {
+    if (mainArr.size() <= 1) return;
+
+    int mid = mainArr.size() / 2;
+    vector<int> left(mainArr.begin(), mainArr.begin() + mid);
+    vector<int> right(mainArr.begin() + mid, mainArr.end());
+
+    MergeSort(left, order);
+    MergeSort(right, order);
+
+    merge(mainArr, left, right, order);
+}
 
 int main() {
     cout << "Sample Run" << endl;
@@ -22,16 +47,22 @@ int main() {
     vector<int> sampleRun = {12, 8, 9, 3, 11, 5, 4};
 
     vector<int> mainArr;
-    vector<int> temp; // for temporary merging.
     string order = "ascending"; // sorting order 
 
     for (int x: sampleRun) {
         mainArr.push_back(x); 
     }
-    int start = mainArr[0];
-    int mid = mainArr.size(2);
-    MergeSort(mainArr, temp, order);
-    
+    MergeSort(mainArr, order);
+    cout << "\nSorted array (" << order << "): ";
+    for (int x : mainArr) {
+        if (x == mainArr[mainArr.size()-1]) {
+            cout << x;
+            break;
+        }
+        cout << x << ", ";
+    };
+    cout << endl;
+
     mainArr.clear();
 
     cout << "\n\n--------------------------------------------\n\n" << "Try it." << endl;
@@ -44,7 +75,17 @@ int main() {
     }
     cout << "Ascending or Descending order? " << endl;
 
-    MergeSort(mainArr, temp, order);
+    MergeSort(mainArr, order);
+
+    cout << "\nSorted array (" << order << "): ";
+    for (int x : mainArr) {
+        if (x == mainArr[mainArr.size()-1]) {
+            cout << x;
+            break;
+        }
+        cout << x << ", ";
+    };
+    cout << endl;
 
     return 0;
 }
