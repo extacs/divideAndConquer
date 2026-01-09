@@ -82,15 +82,6 @@ int main() {
     MergeSort(mainArr, order);
 
     print(mainArr,order);
-    // cout << "\nSorted array (" << order << "): ";
-    // for (int x : mainArr) {
-    //     if (x == mainArr[mainArr.size()-1]) {
-    //         cout << x;
-    //         break;
-    //     }
-    //     cout << x << ", ";
-    // };
-    // cout << endl;
 
     return 0;
 }
