@@ -59,7 +59,7 @@ int main() {
     vector<int> sampleRun = {12, 8, 9, 3, 11, 5, 4};
 
     vector<int> mainArr;
-    string order = "descending"; // sorting order 
+    string order = "descending"; 
 
     for (int x: sampleRun) {
         mainArr.push_back(x); 
